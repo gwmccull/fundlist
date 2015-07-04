@@ -2,6 +2,7 @@
   "name": "fundlist",
   "version": "0.0.1",
   "devDependencies": {
+    "babel-eslint": "^3.1.20",
     "grunt": "~0.4",
     "grunt-angular-templates": "~0.5",
     "grunt-browser-output": "1.0.3",
