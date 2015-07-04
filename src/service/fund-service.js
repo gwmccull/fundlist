@@ -24,7 +24,6 @@ function fundService($http) {
 
     function getFundsComplete(data) {
         funds = data.data.funds;
-        //console.log(data.data.funds);
         return funds;
     }
 
