@@ -19,6 +19,7 @@ var jshint = require('gulp-jshint');
 var jasmine = require('gulp-jasmine');
 var stylish = require('jshint-stylish');
 var domSrc = require('gulp-dom-src');
+var karma = require('gulp-karma');
 
 var htmlminOptions = {
     collapseBooleanAttributes: true,
@@ -65,7 +66,7 @@ gulp.task('js', ['clean'], function() {
         .pipe(gulp.dest('dist/'));
 
 
-    /* 
+    /*
         Should be able to add to an existing stream easier, like:
         gulp.src([... partials html ...])
           .pipe(htmlmin())
@@ -78,6 +79,19 @@ gulp.task('js', ['clean'], function() {
 
         https://github.com/wearefractal/vinyl-fs/issues/9
     */
+});
+
+gulp.task('test', function() {
+    // Be sure to return the stream
+    return gulp.src(['!node_modules/**','!dist/**','!bower_components/**','!**/*.html', 'src/**/*-spec.js'])
+        .pipe(karma({
+            configFile: 'karma.conf.js',
+            action: 'run'
+        }))
+        .on('error', function(err) {
+            // Make sure failed tests cause gulp to exit non-zero
+            throw err;
+        });
 });
 
 gulp.task('indexHtml', ['clean'], function() {
@@ -111,7 +125,7 @@ gulp.task('jshint', function(){
 
 gulp.task('build', ['clean', 'css', 'js', 'indexHtml', 'images', 'fonts']);
 
-/* 
+/*
 
 -specifying clean dependency on each task is ugly
 https://github.com/robrich/orchestrator/issues/26

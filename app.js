@@ -1,4 +1,9 @@
-angular.module('fundlist', ['ui.bootstrap','ui.utils','ui.router','ngAnimate']);
+angular.module('fundlist', [
+    'ui.bootstrap',
+    'ui.utils',
+    'ui.router',
+    'ngAnimate'
+]);
 
 angular.module('fundlist').config(function($stateProvider, $urlRouterProvider) {
 
