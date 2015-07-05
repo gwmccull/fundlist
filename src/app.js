@@ -8,7 +8,8 @@
             'app.fundList',
             'app.fund',
             'app.core.fund',
-            'app.core.charts'
+            'app.core.charts',
+            'app.filter.string'
         ])
         .config(fundlistConfig)
         .run(fundlistRun)

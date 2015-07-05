@@ -420,6 +420,8 @@ describe('fund', function() {
 
     beforeEach(module('app.fund'));
 
+    beforeEach(module('app.filter.string'));
+
     beforeEach(inject(function($rootScope, $compile) {
         element = angular.element('<fund fund="vm.fund"></fund>');
         scope = $rootScope;
