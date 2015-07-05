@@ -2,12 +2,13 @@
     angular
         .module('fundlist', [
             'ui.bootstrap',
-            'ui.utils',
+            //'ui.utils',
             'ui.router',
             'ngAnimate'
         ])
         .config(fundlistConfig)
-        .run(fundlistRun);
+        .run(fundlistRun)
+        .directive('fundList', fundlistDirective);
 
     function fundlistConfig($stateProvider, $urlRouterProvider) {
         /* Add New States Above */
@@ -24,6 +25,15 @@
             } else {
                 this.$apply(fn);
             }
+        };
+    }
+
+    function fundlistDirective() {
+        return {
+            restrict: 'E',
+            replace: true,
+            template:
+                '<div>test...</div>'
         };
     }
 })();
