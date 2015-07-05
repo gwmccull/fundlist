@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module('fundList', [])
+        .module('fundList', ['app.core'])
         .directive('fundList', fundList);
 
     function fundList() {
@@ -8,9 +8,9 @@
             controllerAs: 'vm',
             restrict: 'E',
             controller: FundListController,
-            replace: true,
+            replace: false,
             scope: {},
-            templateUrl: './components/fund-list/fund-list.html'
+            templateUrl: 'components/fund-list/fund-list.html'
             //link: linkFunc,
             //bindToController: true // because the scope is isolated
         };
@@ -37,5 +37,7 @@
         console.log('CTRL: $scope.vm.max = %s', $scope.vm.max);
         console.log('CTRL: vm.min = %s', vm.min);
         console.log('CTRL: vm.max = %s', vm.max);
+
+        //fundService.get
     }
 })();

@@ -1,23 +1,20 @@
 describe('fundList', function() {
 
-  beforeEach(module('app'));
+    beforeEach(module('templates'));
 
-  var scope,compile;
+    beforeEach(module('fundList'));
 
-  beforeEach(inject(function($rootScope,$compile) {
-    scope = $rootScope.$new();
-    compile = $compile;
-  }));
+    var scope,compile,element;
 
-  it('should ...', function() {
+    beforeEach(inject(function($rootScope,$compile) {
+        scope = $rootScope.$new();
+        compile = $compile;
+        element = compile('<fund-list></fund-list>')(scope);
+    }));
 
-    /*
-    To test your directive, you need to create some html that would use your directive,
-    send that through compile() then compare the results.
+    it('should make a list of funds', function() {
+        scope.$digest();
 
-    var element = compile('<div mydirective name="name">hi</div>')(scope);
-    expect(element.text()).toBe('hello, world');
-    */
-
-  });
+        expect(element.find('fund').length).toBe(1);
+    });
 });

@@ -23,8 +23,9 @@ module.exports = function(config) {
             './bower_components/angular-ui-utils/modules/**/*.js',
             './bower_components/angular-ui-router/release/angular-ui-router.js',
             './bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
-            './app.js',
-            './src/**/*.js'
+            './src/app.js',
+            './src/**/*.js',
+            './src/**/*.html'
         ],
 
 
@@ -37,8 +38,17 @@ module.exports = function(config) {
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
         preprocessors: {
+            "./src/**/*.html": "ng-html2js"
         },
 
+        ngHtml2JsPreprocessor: {
+            // If your build process changes the path to your templates,
+            // use stripPrefix and prependPrefix to adjust it.
+            stripPrefix: "src/",
+
+            // the name of the Angular module to create
+            moduleName: "templates"
+        },
 
         // test results reporter to use
         // possible values: 'dots', 'progress'
