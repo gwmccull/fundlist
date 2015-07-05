@@ -1,33 +1,34 @@
-angular
-    .module('fundlist')
-    .factory('fundService', fundService);
+(function() {
+    angular
+        .module('fundlist')
+        .factory('fundService', fundService);
 
-fundService.$inject = ['$http', '$log'];
+    fundService.$inject = ['$http', '$log'];
 
-function fundService($http) {
-    var funds = [];
-	var fundService = {
-        getFunds: getFunds
-    };
+    function fundService($http) {
+        var funds = [];
 
-	return fundService;
+        return {
+            getFunds: getFunds
+        };
 
-    function getFunds() {
-        if (funds.length === 0) {
-            return $http.get('./data/funds.json')
-                .then(getFundsComplete)
-                .catch(getFundsError);
-        } else {
+        function getFunds() {
+            if (funds.length === 0) {
+                return $http.get('./data/funds.json')
+                    .then(getFundsComplete)
+                    .catch(getFundsError);
+            } else {
+                return funds;
+            }
+        }
+
+        function getFundsComplete(data) {
+            funds = data.data.funds;
             return funds;
         }
-    }
 
-    function getFundsComplete(data) {
-        funds = data.data.funds;
-        return funds;
+        function getFundsError(error) {
+            $log.error('Error retrieving funds.json: ' + error);
+        }
     }
-
-    function getFundsError(error) {
-        $log.error('Error retrieving funds.json: ' + error);
-    }
-}
+})();

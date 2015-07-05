@@ -1,28 +1,29 @@
-angular.module('fundlist', [
-    'ui.bootstrap',
-    'ui.utils',
-    'ui.router',
-    'ngAnimate'
-]);
+(function() {
+    angular
+        .module('fundlist', [
+            'ui.bootstrap',
+            'ui.utils',
+            'ui.router',
+            'ngAnimate'
+        ])
+        .config(fundlistConfig)
+        .run(fundlistRun);
 
-angular.module('fundlist').config(function($stateProvider, $urlRouterProvider) {
+    function fundlistConfig($stateProvider, $urlRouterProvider) {
+        /* Add New States Above */
+        $urlRouterProvider.otherwise('/home');
+    }
 
-    /* Add New States Above */
-    $urlRouterProvider.otherwise('/home');
-
-});
-
-angular.module('fundlist').run(function($rootScope) {
-
-    $rootScope.safeApply = function(fn) {
-        var phase = $rootScope.$$phase;
-        if (phase === '$apply' || phase === '$digest') {
-            if (fn && (typeof(fn) === 'function')) {
-                fn();
+    function fundlistRun($rootScope) {
+        $rootScope.safeApply = function (fn) {
+            var phase = $rootScope.$$phase;
+            if (phase === '$apply' || phase === '$digest') {
+                if (fn && (typeof(fn) === 'function')) {
+                    fn();
+                }
+            } else {
+                this.$apply(fn);
             }
-        } else {
-            this.$apply(fn);
-        }
-    };
-
-});
+        };
+    }
+})();
