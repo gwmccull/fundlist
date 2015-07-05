@@ -862,20 +862,17 @@ describe('fundList', function() {
         ]
     };
 
-    var scope, element, httpBackend, controller;
+    var scope, element, controller;
 
     beforeEach(module('templates'));
 
     beforeEach(module('app.fundList'));
 
-    beforeEach(inject(function($rootScope, $compile, $httpBackend) {
+    beforeEach(inject(function($rootScope, $compile) {
         element = angular.element('<fund-list funds="vm.funds"></fund-list>');
         scope = $rootScope;
         scope.vm = {};
         scope.vm.funds = fundData.funds;
-
-        httpBackend = $httpBackend;
-        httpBackend.whenGET('../data/funds.json').respond(200, fundData);
 
         $compile(element)(scope);
         scope.$digest();
@@ -885,14 +882,6 @@ describe('fundList', function() {
 
 
     it('should make a list of funds', function() {
-
-        //console.log('scope 2', scope.vm.funds.length);
-        //scope.$digest();
-
-        //console.log(controller.funds);
-        var templateAsHtml = element.html();
-
-        //console.log(templateAsHtml)
         expect(element.find('fund').length).toBeGreaterThan(1);
     });
 });

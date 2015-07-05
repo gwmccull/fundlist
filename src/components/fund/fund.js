@@ -18,10 +18,9 @@
         return directive;
     }
 
-    FundController.$inject = ['$scope'];
+    FundController.$inject = [];
 
-    function FundController($scope) {
+    function FundController() {
         var vm = this;
-        vm.fund = vm.fund;
     }
 })();

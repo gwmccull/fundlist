@@ -1,6 +1,6 @@
 (function() {
     angular
-        .module('app.core', [])
+        .module('app.core.fund', [])
         .factory('fundService', fundService);
 
     fundService.$inject = ['$http', '$log'];

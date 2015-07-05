@@ -1,6 +1,6 @@
 (function () {
     angular
-        .module('app.fundList', ['app.core'])
+        .module('app.fundList', [])
         .directive('fundList', fundList);
 
     function fundList() {
@@ -13,23 +13,15 @@
             scope: {
                 funds: '='
             },
-            templateUrl: 'components/fund-list/fund-list.html',
-            link: linkCtrl
+            templateUrl: 'components/fund-list/fund-list.html'
         };
 
         return directive;
     }
 
-    function linkCtrl(scope) {
-        //console.log("scope", scope.vm);
-    }
+    FundListController.$inject = [];
 
-    FundListController.$inject = ['$scope', 'fundService'];
-
-    function FundListController($scope, fundService) {
-        // Injecting $scope just for comparison
+    function FundListController() {
         var vm = this;
-        vm.funds = vm.funds;
-
     }
 })();

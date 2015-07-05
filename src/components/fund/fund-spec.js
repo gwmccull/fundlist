@@ -414,20 +414,17 @@ describe('fund', function() {
         ]
     };
 
-    var scope, element, httpBackend, controller;
+    var scope, element, controller;
 
     beforeEach(module('templates'));
 
     beforeEach(module('app.fund'));
 
-    beforeEach(inject(function($rootScope, $compile, $httpBackend) {
+    beforeEach(inject(function($rootScope, $compile) {
         element = angular.element('<fund fund="vm.fund"></fund>');
         scope = $rootScope;
         scope.vm = {};
         scope.vm.fund = fund;
-
-        httpBackend = $httpBackend;
-        httpBackend.whenGET('../data/funds.json').respond(200, fund);
 
         $compile(element)(scope);
         scope.$digest();
@@ -436,7 +433,7 @@ describe('fund', function() {
     }));
 
 
-    it('should display a fund', function() {
+    it('should contain a fund', function() {
         //var templateAsHtml = element.html();
 
         //console.log(element.find('h2'))

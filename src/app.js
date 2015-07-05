@@ -6,8 +6,9 @@
             'ui.router',
             'ngAnimate',
             'app.fundList',
-            'app.core',
-            'app.fund'
+            'app.fund',
+            'app.core.fund',
+            'app.core.charts'
         ])
         .config(fundlistConfig)
         .run(fundlistRun)
@@ -32,7 +33,6 @@
         };
 
         fundService.getFunds()
-
             .then(function (data) {
                 //console.log("data", data);
                 $rootScope.funds = data;

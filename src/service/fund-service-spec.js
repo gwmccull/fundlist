@@ -2,7 +2,7 @@
     describe('fundService', function() {
         var fundService, httpBackend;
 
-        beforeEach(module('app'));
+        beforeEach(module('app.core.fund'));
 
         beforeEach(inject(function (_fundService_, $httpBackend) {
             fundService = _fundService_;
