@@ -35,7 +35,7 @@
             restrict: 'E',
             replace: true,
             template:
-                '<fund-list>test...</fund-list>'
+                '<div><fund-list>test...</fund-list></div>'
         };
     }
 })();

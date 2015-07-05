@@ -5,13 +5,14 @@
 
     function fundList() {
         var directive = {
-            restrict: 'EA',
-            templateUrl: 'src/components/fund-list/fund-list.html',
-            scope: true,
-            link: linkFunc,
-            controller: FundListController,
             controllerAs: 'vm',
-            bindToController: true // because the scope is isolated
+            restrict: 'E',
+            controller: FundListController,
+            replace: true,
+            scope: {},
+            templateUrl: './components/fund-list/fund-list.html'
+            //link: linkFunc,
+            //bindToController: true // because the scope is isolated
         };
 
         return directive;
@@ -24,9 +25,9 @@
         }
     }
 
-    FundListController.$inject = ['$scope'];
+    FundListController.$inject = ['$scope', 'fundService'];
 
-    function FundListController($scope) {
+    function FundListController($scope, fundService) {
         // Injecting $scope just for comparison
         var vm = this;
 

@@ -37,7 +37,7 @@ gulp.task('clean', function() {
 });
 
 gulp.task('css', ['clean'], function() {
-    return gulp.src('app.less')
+    return gulp.src('src/app.less')
         .pipe(less())
         .pipe(cssmin({keepSpecialComments: 0}))
         .pipe(rename('app.full.min.css'))
@@ -46,13 +46,13 @@ gulp.task('css', ['clean'], function() {
 
 gulp.task('js', ['clean'], function() {
 
-    var templateStream = gulp.src(['!node_modules/**','!index.html','!_SpecRunner.html','!.grunt/**','!dist/**','!bower_components/**','**/*.html'])
+    var templateStream = gulp.src(['!node_modules/**','!src/index.html','!_SpecRunner.html','!.grunt/**','!dist/**','!bower_components/**','**/*.html'])
         .pipe(htmlmin(htmlminOptions))
         .pipe(ngHtml2js({
             moduleName: packagejson.name
         }));
 
-    var jsStream = domSrc({file:'index.html',selector:'script[data-build!="exclude"]',attribute:'src'});
+    var jsStream = domSrc({file:'src/index.html',selector:'script[data-build!="exclude"]',attribute:'src'});
 
     var combined = streamqueue({ objectMode: true });
 
@@ -95,7 +95,7 @@ gulp.task('test', function() {
 });
 
 gulp.task('indexHtml', ['clean'], function() {
-    return gulp.src('index.html')
+    return gulp.src('src/index.html')
         .pipe(gCheerio(function ($) {
             $('script[data-remove!="exclude"]').remove();
             $('link').remove();
@@ -107,9 +107,9 @@ gulp.task('indexHtml', ['clean'], function() {
 });
 
 gulp.task('images', ['clean'], function(){
-    return gulp.src('img/**')
+    return gulp.src('src/img/**')
         .pipe(imagemin())
-        .pipe(gulp.dest('dist/'));
+        .pipe(gulp.dest('dist/img/'));
 });
 
 gulp.task('fonts', ['clean'], function(){
