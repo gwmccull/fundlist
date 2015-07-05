@@ -6,7 +6,8 @@
             'ui.router',
             'ngAnimate',
             'app.fundList',
-            'app.core'
+            'app.core',
+            'app.fund'
         ])
         .config(fundlistConfig)
         .run(fundlistRun)
