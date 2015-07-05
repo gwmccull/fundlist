@@ -8,7 +8,7 @@ var imagemin = require('gulp-imagemin');
 var less = require('gulp-less');
 var gCheerio = require('gulp-cheerio');
 var ngHtml2js = require("gulp-ng-html2js");
-var ngmin = require('gulp-ngmin');
+var ngAnnotate = require('gulp-ng-annotate');
 var htmlmin = require('gulp-htmlmin');
 var cssmin = require('gulp-cssmin');
 var packagejson = require('./package.json');
@@ -61,7 +61,7 @@ gulp.task('js', ['clean'], function() {
 
     return combined.done()
         .pipe(concat('app.full.min.js'))
-        .pipe(ngmin())
+        .pipe(ngAnnotate())
         .pipe(uglify())
         .pipe(gulp.dest('dist/'));
 

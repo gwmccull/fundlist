@@ -10,6 +10,7 @@
         .run(fundlistRun)
         .directive('fundList', fundlistDirective);
 
+
     function fundlistConfig($stateProvider, $urlRouterProvider) {
         /* Add New States Above */
         $urlRouterProvider.otherwise('/home');
