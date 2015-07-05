@@ -1,3 +1,43 @@
-<div>
-    <h2>{{vm.fund.name}}</h2>
+<div class="well">
+    <div class="row">
+        <h2 class="col-xs-12">
+            {{vm.fund.name}} <br />
+            <small>{{vm.fund["Transfer Agent Taxonomy Id"]}}</small>
+        </h2>
+        <div class="col-md-4 col-xs-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <label class="col-md-4">Domocile</label>
+                        <span class="col-md-8">{{vm.fund["Domicile Id"]}}</span>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-4">Currency</label>
+                        <span class="col-md-8">{{vm.fund["Price Currency Id"]}}</span>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-4">Classification</label>
+                        <span class="col-md-8">{{vm.fund["Classification Taxonomy Id"]}}</span>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-4">Structure</label>
+                        <span class="col-md-8">{{vm.fund["Legal Structure Taxonomy Id"]}}</span>
+                    </div>
+                    <div class="row">
+                        <label class="col-md-4">Status</label>
+                        <span class="col-md-8">{{vm.fund["Fund Status Taxonomy Id"]}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 col-xs-12">
+            <div class="row">
+                <h3 class="text-center">Returns</h3>
+                <div class="col-md-6">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>

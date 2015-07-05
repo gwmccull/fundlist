@@ -13,6 +13,7 @@
                 fund: '='
             },
             templateUrl: 'components/fund/fund.html',
+            replace: false
         };
 
         return directive;

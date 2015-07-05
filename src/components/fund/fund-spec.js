@@ -436,7 +436,7 @@ describe('fund', function() {
     it('should contain a fund', function() {
         //var templateAsHtml = element.html();
 
-        //console.log(element.find('h2'))
+        //console.log(element.html())
         expect(controller.fund).toEqual(fund);
     });
 });

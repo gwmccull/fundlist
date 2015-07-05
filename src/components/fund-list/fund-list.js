@@ -8,7 +8,7 @@
             controllerAs: 'vm',
             restrict: 'E',
             controller: FundListController,
-            //replace: false,
+            replace: false,
             bindToController: true,
             scope: {
                 funds: '='

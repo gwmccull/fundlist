@@ -44,7 +44,7 @@
             restrict: 'E',
             replace: false,
             template:
-                '<fund-list funds="funds">test...</fund-list>'
+                '<fund-list funds="funds" class="row">test...</fund-list>'
         };
     }
 })();
