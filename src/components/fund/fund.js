@@ -23,5 +23,7 @@
 
     function FundController() {
         var vm = this;
+
+        vm.selectedShare = vm.fund.shareClasses[0];
     }
 })();

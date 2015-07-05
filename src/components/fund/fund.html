@@ -32,11 +32,10 @@
         </div>
         <div class="col-md-8 col-xs-12">
             <div class="row">
-                <h3 class="text-center">Returns</h3>
-                <div class="col-md-6">
-
-                </div>
+                <select class="col-xs-12" ng-options="shareClass['Short Name'] for shareClass in vm.fund.shareClasses" ng-model="vm.selectedShare"></select>
             </div>
+            {{vm.selectedShare}}
+            <share-class share="vm.selectedShare"></share-class>
         </div>
     </div>
 
