@@ -1,6 +1,6 @@
 (function() {
     angular
-        .module('fundlist')
+        .module('app')
         .factory('chartsService', chartsService);
 
     chartsService.$inject = ['$http', '$log'];

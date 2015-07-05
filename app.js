@@ -1,14 +1,15 @@
 (function() {
     angular
-        .module('fundlist', [
+        .module('app', [
             'ui.bootstrap',
             //'ui.utils',
             'ui.router',
-            'ngAnimate'
+            'ngAnimate',
+            'fundList'
         ])
         .config(fundlistConfig)
         .run(fundlistRun)
-        .directive('fundList', fundlistDirective);
+        .directive('app', appDirective);
 
 
     function fundlistConfig($stateProvider, $urlRouterProvider) {
@@ -29,12 +30,12 @@
         };
     }
 
-    function fundlistDirective() {
+    function appDirective() {
         return {
             restrict: 'E',
             replace: true,
             template:
-                '<div>test...</div>'
+                '<fund-list>test...</fund-list>'
         };
     }
 })();
