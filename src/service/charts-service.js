@@ -1,11 +1,11 @@
 (function() {
     angular
-        .module('app')
+        .module('app.core.charts', [])
         .factory('chartsService', chartsService);
 
     chartsService.$inject = ['$http', '$log'];
 
-    function chartsService($http) {
+    function chartsService($http, $log) {
         var charts = [];
         var chartsService = {
             getCharts: getCharts
@@ -15,7 +15,7 @@
 
         function getCharts() {
             if (charts.length === 0) {
-                return $http.get('./data/chart.json')
+                return $http.get('../data/chart.json')
                     .then(getChartsComplete)
                     .catch(getChartsError);
             } else {

@@ -5,7 +5,8 @@
             //'ui.utils',
             'ui.router',
             'ngAnimate',
-            'fundList'
+            'app.fundList',
+            'app.core'
         ])
         .config(fundlistConfig)
         .run(fundlistRun)
@@ -17,7 +18,7 @@
         $urlRouterProvider.otherwise('/home');
     }
 
-    function fundlistRun($rootScope) {
+    function fundlistRun($rootScope, fundService) {
         $rootScope.safeApply = function (fn) {
             var phase = $rootScope.$$phase;
             if (phase === '$apply' || phase === '$digest') {
@@ -28,14 +29,21 @@
                 this.$apply(fn);
             }
         };
+
+        fundService.getFunds()
+
+            .then(function (data) {
+                //console.log("data", data);
+                $rootScope.funds = data;
+            });
     }
 
     function appDirective() {
         return {
             restrict: 'E',
-            replace: true,
+            replace: false,
             template:
-                '<div><fund-list>test...</fund-list></div>'
+                '<fund-list funds="funds">test...</fund-list>'
         };
     }
 })();

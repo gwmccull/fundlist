@@ -1,8 +1,8 @@
 (function() {
     describe('chartsService', function() {
-        var fundService, httpBackend;
+        var chartsService, httpBackend;
 
-        beforeEach(module('app'));
+        beforeEach(module('app.core.charts'));
 
         beforeEach(inject(function (_chartsService_, $httpBackend) {
             chartsService = _chartsService_;
@@ -10,7 +10,7 @@
         }));
 
         it('should return an array of charts', function() {
-            httpBackend.whenGET('./data/chart.json').respond({
+            httpBackend.whenGET('../data/chart.json').respond({
                     "chart": [
                         {
                             "name": "JPM US Smaller Companies IT - Ordinary Shares",

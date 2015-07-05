@@ -10,7 +10,7 @@
         }));
 
         it('should return an array of funds', function () {
-            httpBackend.whenGET('./data/funds.json').respond({
+            httpBackend.whenGET('../data/funds.json').respond({
                 "funds": [
                     {
                         "entityId": "0",

@@ -5,7 +5,7 @@
 
     fundService.$inject = ['$http', '$log'];
 
-    function fundService($http) {
+    function fundService($http, $log) {
         var funds = [];
 
         return {
@@ -14,7 +14,7 @@
 
         function getFunds() {
             if (funds.length === 0) {
-                return $http.get('./data/funds.json')
+                return $http.get('../data/funds.json')
                     .then(getFundsComplete)
                     .catch(getFundsError);
             } else {
