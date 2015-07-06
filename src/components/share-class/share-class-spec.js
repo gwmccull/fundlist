@@ -96,14 +96,30 @@ describe('shareClass', function() {
         expect(controller.share).toEqual(share);
     });
 
+    describe('switching logic for the View', function() {
+        it('should contain a list for share classes more than 4yrs old', function() {
+            scope.vm.share["Launch Date"] = '2010-01-31 00:00:00.0';
+            scope.$digest();
+            expect(element.find('ul').length).toBeGreaterThan(0);
+        });
+
+        it('should contain a table for share classes less than 4yrs old', function() {
+            scope.vm.share["Launch Date"] = '2014-01-31 00:00:00.0';
+            scope.$digest();
+            expect(element.find('table').length).toBe(1);
+        });
+    });
+
     describe('datedShareClass tests', function() {
         it('should return true for share classes more than 4yrs old', function() {
             scope.vm.share["Launch Date"] = '2010-01-31 00:00:00.0';
+            scope.$digest();
             expect(controller.datedShareClass()).toBe(true);
         });
 
         it('should return false for share classes less than 4yrs old', function() {
             scope.vm.share["Launch Date"] = '2014-01-31 00:00:00.0';
+            scope.$digest();
             expect(controller.datedShareClass()).toBe(false);
         });
     });

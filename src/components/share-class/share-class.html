@@ -1,6 +1,6 @@
 <!--test: {{vm}}-->
 <div class="col-xs-12">
-    <table class="table table-striped">
+    <table ng-show="!vm.datedShareClass()" class="table table-striped">
         <tbody>
         <tr>
             <th class="col-xs-3">Launch Date</th>
@@ -46,4 +46,59 @@
         </tr>
         </tbody>
     </table>
+
+    <ul ng-show="vm.datedShareClass()" class="">
+        <li>
+            <label>Launch Date</label>
+            <span>{{vm.share["Launch Date"] | parseDate | date:"MM/dd/yyyy"}}</span>
+        </li>
+        <li>
+            <label>NAV Base</label>
+            <span>{{vm.share["NAV Base"] | number:2}}</span>
+        </li>
+        <li>
+            <label>
+                Cumulative Returns
+            </label>
+            <ul>
+                <li>
+                    <label>1 Month</label>
+                    <span>{{vm.share["Cumulative Return 1 Month"] | number:2}}%</span>
+                </li>
+                <li>
+                    <label>3 Month</label>
+                    <span>{{vm.share["Cumulative Return 3 Month"] | number:2}}%</span>
+                </li>
+                <li>
+                    <label>6 Month</label>
+                    <span>{{vm.share["Cumulative Return 6 Month"] | number:2}}%</span>
+                </li>
+                <li>
+                    <label>1 Year</label>
+                    <span>{{vm.share["Cumulative Return 1 Year"] | number:2}}%</span>
+                </li>
+                <li>
+                    <label>Launch to Date</label>
+                    <span>{{vm.share["Cumulative Return Launch to Date"] | number:2}}%</span>
+                </li>
+
+            </ul>
+        </li>
+        <li>
+            <label>
+                Compound Returns
+            </label>
+            <ul>
+                <li>
+                    <label>1 Year Annual</label>
+                    <span>{{vm.share["Compound Return 1 Year Annual"] | number:2}}%</span>
+                </li>
+                <li>
+                    <label>Launch to Date Annual</label>
+                    <span>{{vm.share["Compound Return Launch To Date Annual"] | number:2}}%</span>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
 </div>
