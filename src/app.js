@@ -8,6 +8,7 @@
             'app.fundList',
             'app.fund',
             'app.shareClass',
+            'app.shareClassChart',
             'app.core.fund',
             'app.core.charts',
             'app.filter'

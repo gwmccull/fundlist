@@ -1,4 +1,4 @@
-<!--test: {{vm}}-->
+test: {{vm.share}}
 <div class="col-xs-12">
     <table ng-show="!vm.datedShareClass()" class="table table-striped">
         <tbody>
@@ -101,4 +101,7 @@
         </li>
     </ul>
 
+    <share-class-chart isin-code="vm.share['ISIN Code']" from-date="vm.share['Report Date From']" to-date="vm.share['Report Date To']">
+        Loading...
+    </share-class-chart>
 </div>
