@@ -76,6 +76,8 @@ describe('shareClass', function() {
 
     beforeEach(module('templates'));
 
+    beforeEach(module('app.filter'));
+
     beforeEach(module('app.shareClass'));
 
     beforeEach(inject(function($rootScope, $compile) {

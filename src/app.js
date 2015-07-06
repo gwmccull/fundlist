@@ -10,7 +10,7 @@
             'app.shareClass',
             'app.core.fund',
             'app.core.charts',
-            'app.filter.string'
+            'app.filter'
         ])
         .config(fundlistConfig)
         .run(fundlistRun)
