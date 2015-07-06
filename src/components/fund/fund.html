@@ -32,7 +32,9 @@
         </div>
         <div class="col-md-8 col-xs-12">
             <div class="row">
-                <select class="col-xs-12" ng-options="shareClass['Short Name'] for shareClass in vm.fund.shareClasses" ng-model="vm.selectedShare"></select>
+                <div class="col-xs-12">
+                    <select class="share-class-select" ng-options="shareClass['Short Name'] for shareClass in vm.fund.shareClasses" ng-model="vm.selectedShare"></select>
+                </div>
             </div>
             <share-class share="vm.selectedShare" class="row"></share-class>
         </div>
