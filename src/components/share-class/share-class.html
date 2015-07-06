@@ -1,0 +1,40 @@
+test: {{vm}}
+<div class="col-xs-12">
+    <table width="100%" class="row table table-striped">
+        <tbody>
+        <tr>
+            <th class="col-xs-3">Launch Date</th>
+            <td class="col-xs-9">{{vm.share["Launch Date"]}}</td>
+        </tr>
+        <tr>
+            <th class="col-xs-3">NAV Base</th>
+            <td class="col-xs-9">{{vm.share["NAV Base"] | number:2}}</td>
+        </tr>
+        <tr>
+            <th colspan="2" class="text-center">
+                Cumulative Returns
+            </th>
+        </tr>
+        <tr>
+            <th class="col-xs-3">1 Month</th>
+            <td class="col-xs-9">{{vm.share["Cumulative Return 1 Month"] | number:2}}%</td>
+        </tr>
+        <tr>
+            <th class="col-xs-3">3 Month</th>
+            <td class="col-xs-9">{{vm.share["Cumulative Return 3 Month"] | number:2}}%</td>
+        </tr>
+        <tr>
+            <th class="col-xs-3">6 Month</th>
+            <td class="col-xs-9">{{vm.share["Cumulative Return 6 Month"] | number:2}}%</td>
+        </tr>
+        <tr>
+            <th class="col-xs-3">1 Year</th>
+            <td class="col-xs-9">{{vm.share["Cumulative Return 1 Year"] | number:2}}%</td>
+        </tr>
+        <tr>
+            <th class="col-xs-3">Launch to Date</th>
+            <td class="col-xs-9">{{vm.share["Cumulative Return Launch to Date"] | number:2}}%</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
