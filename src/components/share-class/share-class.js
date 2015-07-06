@@ -23,5 +23,12 @@
 
     function ShareClassController() {
         var vm = this;
+
+        vm.datedShareClass = function() {
+            var dateCutOff = moment().subtract(4, 'years');
+            var launchDate = moment(vm.share["Launch Date"]);
+
+            return launchDate.diff(dateCutOff) < 0;
+        };
     }
 })();
