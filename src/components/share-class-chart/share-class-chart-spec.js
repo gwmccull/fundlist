@@ -41,7 +41,7 @@ describe('shareClassChart', function() {
         controller = element.controller('shareClassChart')
     });
 
-    it('make test', function() {
+    it('should set up the controller and fetch the data', function() {
         expect(controller.chartData).toBe(chartData);
         expect(controller.isinCode).toBe(isinCode);
         expect(controller.fromDate).toBe(fromDate);

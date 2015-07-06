@@ -4,6 +4,7 @@
             'ui.bootstrap',
             //'ui.utils',
             'ui.router',
+            'highcharts-ng',
             'ngAnimate',
             'app.fundList',
             'app.fund',

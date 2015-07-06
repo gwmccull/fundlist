@@ -21,20 +21,20 @@
         return directive;
     }
 
-    ShareClassChartController.$inject = ['chartsService'];
+    ShareClassChartController.$inject = ['$log', 'chartsService'];
 
-    function ShareClassChartController(chartsService) {
+    function ShareClassChartController($log, chartsService) {
         var vm = this;
 
 
         vm.init = function() {
             chartsService.getCharts(vm.isinCode, vm.fromDate, vm.toDate)
                 .then(function(data) {
-                    console.log("data", data);
+                    $log.log("data", data);
                     vm.chartData = data;
                 })
                 .catch(function(err) {
-                    console.log("err", err);
+                    $log.error("err", err);
                 })
         };
 
