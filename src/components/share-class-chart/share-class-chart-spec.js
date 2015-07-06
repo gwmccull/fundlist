@@ -1,9 +1,10 @@
 describe('shareClassChart', function() {
 
-    var isinCode = "GB00BGSHGD95";
-    var fromDate = "2013-12-29 00:00:00.0";
-    var toDate = "9999-12-31 00:00:00.0";
-    var chartData = "test data";
+    var isinCode = 'GB00BGSHGD95';
+    var fromDate = '2013-12-29 00:00:00.0';
+    var toDate = '9999-12-31 00:00:00.0';
+    var chartData = 'test data';
+    var name = 'Entity Name';
 
     var $compile, $rootScope, chartSvc, $q, html, element, controller;
 
@@ -28,13 +29,14 @@ describe('shareClassChart', function() {
             return deferred.promise;
         };
 
-        html = '<share-class-chart isin-code="vm.isinCode" from-date="vm.fromDate" to-date="vm.toDate"></share-class-chart>';
+        html = '<share-class-chart isin-code="vm.isinCode" from-date="vm.fromDate" to-date="vm.toDate" name="vm.name"></share-class-chart>';
         element = angular.element(html);
         element = $compile(element)($rootScope);
         $rootScope.vm = {
             isinCode: isinCode,
             fromDate: fromDate,
-            toDate: toDate
+            toDate: toDate,
+            name: name
         };
         $rootScope.$digest();
 
