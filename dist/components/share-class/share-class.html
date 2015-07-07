@@ -1,0 +1,107 @@
+<!--test: {{vm.share}}-->
+<div class="col-xs-12">
+    <table ng-show="!vm.datedShareClass()" class="table table-striped">
+        <tbody>
+        <tr>
+            <th class="col-xs-3">Launch Date</th>
+            <td class="col-xs-3">{{vm.share["Launch Date"] | parseDate | date:"MM/dd/yyyy"}}</td>
+            <td class="col-xs-3"></td>
+            <td class="col-xs-3"></td>
+        </tr>
+        <tr>
+            <th>NAV Base</th>
+            <td colspan="3">{{vm.share["NAV Base"] | number:2}}</td>
+        </tr>
+        <tr>
+            <th colspan="2" class="text-center">
+                Cumulative Returns
+            </th>
+            <th colspan="2" class="text-center">
+                Compound Returns
+            </th>
+        </tr>
+        <tr>
+            <th>1 Month</th>
+            <td>{{vm.share["Cumulative Return 1 Month"] | number:2}}%</td>
+            <th>1 Year Annual</th>
+            <td>{{vm.share["Compound Return 1 Year Annual"] | number:2}}%</td>
+        </tr>
+        <tr>
+            <th>3 Month</th>
+            <td>{{vm.share["Cumulative Return 3 Month"] | number:2}}%</td>
+            <th>Launch to Date Annual</th>
+            <td>{{vm.share["Compound Return Launch To Date Annual"] | number:2}}%</td>
+        </tr>
+        <tr>
+            <th>6 Month</th>
+            <td colspan="3">{{vm.share["Cumulative Return 6 Month"] | number:2}}%</td>
+        </tr>
+        <tr>
+            <th>1 Year</th>
+            <td colspan="3">{{vm.share["Cumulative Return 1 Year"] | number:2}}%</td>
+        </tr>
+        <tr>
+            <th>Launch to Date</th>
+            <td colspan="3">{{vm.share["Cumulative Return Launch to Date"] | number:2}}%</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <ul ng-show="vm.datedShareClass()" class="">
+        <li>
+            <label>Launch Date</label>
+            <span>{{vm.share["Launch Date"] | parseDate | date:"MM/dd/yyyy"}}</span>
+        </li>
+        <li>
+            <label>NAV Base</label>
+            <span>{{vm.share["NAV Base"] | number:2}}</span>
+        </li>
+        <li>
+            <label>
+                Cumulative Returns
+            </label>
+            <ul>
+                <li>
+                    <label>1 Month</label>
+                    <span>{{vm.share["Cumulative Return 1 Month"] | number:2}}%</span>
+                </li>
+                <li>
+                    <label>3 Month</label>
+                    <span>{{vm.share["Cumulative Return 3 Month"] | number:2}}%</span>
+                </li>
+                <li>
+                    <label>6 Month</label>
+                    <span>{{vm.share["Cumulative Return 6 Month"] | number:2}}%</span>
+                </li>
+                <li>
+                    <label>1 Year</label>
+                    <span>{{vm.share["Cumulative Return 1 Year"] | number:2}}%</span>
+                </li>
+                <li>
+                    <label>Launch to Date</label>
+                    <span>{{vm.share["Cumulative Return Launch to Date"] | number:2}}%</span>
+                </li>
+
+            </ul>
+        </li>
+        <li>
+            <label>
+                Compound Returns
+            </label>
+            <ul>
+                <li>
+                    <label>1 Year Annual</label>
+                    <span>{{vm.share["Compound Return 1 Year Annual"] | number:2}}%</span>
+                </li>
+                <li>
+                    <label>Launch to Date Annual</label>
+                    <span>{{vm.share["Compound Return Launch To Date Annual"] | number:2}}%</span>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+    <share-class-chart isin-code="vm.share['ISIN Code']" from-date="vm.share['Report Date From']" to-date="vm.share['Report Date To']" name="vm.share['Entity Name']">
+        Loading...
+    </share-class-chart>
+</div>

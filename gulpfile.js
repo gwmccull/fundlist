@@ -46,10 +46,12 @@ gulp.task('css', ['clean'], function() {
 
 gulp.task('js', ['clean'], function() {
 
-    var templateStream = gulp.src(['!node_modules/**','!src/index.html','!_SpecRunner.html','!.grunt/**','!dist/**','!bower_components/**','**/*.html'])
+    var templateStream = gulp.src(['!node_modules/**','!src/index.html', '!src/**/*.html', '!_SpecRunner.html','!.grunt/**','!dist/**','!bower_components/**','**/*.html'])
         .pipe(htmlmin(htmlminOptions))
         .pipe(ngHtml2js({
-            moduleName: packagejson.name
+            moduleName: packagejson.name,
+            stripPrefix: 'src/',
+            prefix: 'dist/'
         }));
 
     var jsStream = domSrc({file:'src/index.html',selector:'script[data-build!="exclude"]',attribute:'src'});
@@ -112,6 +114,12 @@ gulp.task('images', ['clean'], function(){
         .pipe(gulp.dest('dist/img/'));
 });
 
+gulp.task('html', ['clean'], function(){
+    return gulp.src(['!src/index.html','src/**/*.html'])
+        //.pipe(imagemin())
+        .pipe(gulp.dest('dist/'));
+});
+
 gulp.task('fonts', ['clean'], function(){
     return gulp.src('bower_components/font-awesome/fonts/**')
         .pipe(gulp.dest('dist/bower_components/font-awesome/fonts/'));
@@ -123,7 +131,7 @@ gulp.task('jshint', function(){
         .pipe(jshint.reporter(stylish));
 });
 
-gulp.task('build', ['clean', 'css', 'js', 'indexHtml', 'images', 'fonts']);
+gulp.task('build', ['clean', 'css', 'js', 'indexHtml', 'images', 'html', 'fonts']);
 
 /*
 

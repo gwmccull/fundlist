@@ -1,0 +1,7 @@
+<!--test: {{vm}}-->
+<div>
+    <div ng-show="vm.validChartData === 'Invalid ISIN Code'" class="alert alert-danger fadein fadeout" role="alert">
+        Invalid ISIN Code.  Please select a different share class.
+    </div>
+    <highchart ng-show="vm.validChartData === true" id="chart1" config="vm.chartConfig" class="fadein fadeout"></highchart>
+</div>
