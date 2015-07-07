@@ -63,7 +63,7 @@
 
             chartsService.getCharts(vm.isinCode, vm.fromDate, vm.toDate)
                 .then(function(data) {
-                    $log.log("data", data);
+                    // $log.log("data", data);
                     vm.chartConfig.subtitle.text = vm.name;
                     vm.chartData = data;
                     vm.validChartData = true;
