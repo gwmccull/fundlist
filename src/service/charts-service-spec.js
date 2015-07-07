@@ -1,12 +1,13 @@
 (function() {
     describe('chartsService', function() {
-        var chartsService, httpBackend;
+        var chartsService, httpBackend, $rootScope;
 
         beforeEach(module('app.core.charts'));
 
-        beforeEach(inject(function (_chartsService_, $httpBackend) {
+        beforeEach(inject(function (_chartsService_, $httpBackend, _$rootScope_) {
             chartsService = _chartsService_;
             httpBackend = $httpBackend;
+            $rootScope = _$rootScope_;
         }));
 
         it('should return an array of charts', function() {
@@ -31,11 +32,28 @@
                 }
             );
 
-            chartsService.getCharts().then(function(chartsResults) {
+            var isinCode = "1234";
+            var fromDate = new Date();
+            var toDate = new Date();
+
+            chartsService.getCharts(isinCode, fromDate, toDate).then(function(chartsResults) {
                 expect(chartsResults).toEqual(jasmine.any(Array));
             });
 
             httpBackend.flush();
+        });
+
+        it('should return an error when ISIN is bad', function() {
+            var fromDate = new Date();
+            var toDate = new Date();
+
+            chartsService.getCharts(undefined, fromDate, toDate)
+                .catch(function(err) {
+                    expect(err).toEqual('Invalid ISIN Code');
+                });
+            $rootScope.$digest();
+
+
         });
 
     });

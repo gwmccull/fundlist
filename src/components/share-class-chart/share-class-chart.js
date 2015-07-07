@@ -22,9 +22,9 @@
         return directive;
     }
 
-    ShareClassChartController.$inject = ['$log', 'chartsService'];
+    ShareClassChartController.$inject = ['$scope', '$log', 'chartsService'];
 
-    function ShareClassChartController($log, chartsService) {
+    function ShareClassChartController($scope, $log, chartsService) {
         var vm = this;
         vm.chartConfig = {
             title: {
@@ -76,6 +76,11 @@
 
 
         vm.init();
+
+        $scope.$watch('vm.isinCode', function(newVal, oldVal) {
+            console.log("isinCode", newVal);
+            vm.init();
+        });
 
         function processCategories() {
             vm.chartConfig.xAxis.categories = [];
