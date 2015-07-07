@@ -26,6 +26,7 @@
 
     function ShareClassChartController($scope, $log, chartsService) {
         var vm = this;
+        vm.validChartData = null;
         vm.chartConfig = {
             title: {
                 text: 'Performance',
@@ -61,24 +62,28 @@
         };
 
         vm.init = function() {
+            vm.validChartData = null;
+
             chartsService.getCharts(vm.isinCode, vm.fromDate, vm.toDate)
                 .then(function(data) {
                     $log.log("data", data);
                     vm.chartData = data;
+                    vm.validChartData = true;
 
                     processCategories();
                     processSeries();
                 })
                 .catch(function(err) {
                     $log.error("err", err);
-                })
+                    vm.chartData = [];
+                    vm.validChartData = err;
+                });
         };
 
 
         vm.init();
 
         $scope.$watch('vm.isinCode', function(newVal, oldVal) {
-            console.log("isinCode", newVal);
             vm.init();
         });
 
