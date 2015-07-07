@@ -33,7 +33,7 @@
                 x: -20 //center
             },
             subtitle: {
-                text: vm.name,
+                text: '',
                 x: -20
             },
             xAxis: {
@@ -67,6 +67,7 @@
             chartsService.getCharts(vm.isinCode, vm.fromDate, vm.toDate)
                 .then(function(data) {
                     $log.log("data", data);
+                    vm.chartConfig.subtitle.text = vm.name;
                     vm.chartData = data;
                     vm.validChartData = true;
 

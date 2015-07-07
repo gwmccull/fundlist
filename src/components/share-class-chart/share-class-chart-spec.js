@@ -23,31 +23,86 @@ describe('shareClassChart', function() {
             $q = _$q_
         });
 
-        chartSvc.getCharts = function() {
+        chartSvc.getCharts = function(isinCode) {
             var deferred = $q.defer();
-            deferred.resolve(chartData);
+            if (isinCode === 'notvalid') {
+                deferred.reject('Invalid ISIN Code');
+            } else {
+                deferred.resolve(chartData);
+            }
             return deferred.promise;
         };
 
         html = '<share-class-chart isin-code="vm.isinCode" from-date="vm.fromDate" to-date="vm.toDate" name="vm.name"></share-class-chart>';
         element = angular.element(html);
         element = $compile(element)($rootScope);
-        $rootScope.vm = {
-            isinCode: isinCode,
-            fromDate: fromDate,
-            toDate: toDate,
-            name: name
-        };
-        $rootScope.$digest();
-
-        controller = element.controller('shareClassChart')
     });
 
-    it('should set up the controller and fetch the data', function() {
-        expect(controller.chartData).toBe(chartData);
-        expect(controller.isinCode).toBe(isinCode);
-        expect(controller.fromDate).toBe(fromDate);
-        expect(controller.toDate).toBe(toDate);
+    describe('valid ISIN code', function() {
+        it('should set up the controller and fetch the data with a valid ISIN code', function() {
+            $rootScope.vm = {
+                isinCode: isinCode,
+                fromDate: fromDate,
+                toDate: toDate,
+                name: name
+            };
+            $rootScope.$digest();
+
+            controller = element.controller('shareClassChart');
+
+            expect(controller.chartData).toBe(chartData);
+            expect(controller.isinCode).toBe(isinCode);
+            expect(controller.fromDate).toBe(fromDate);
+            expect(controller.toDate).toBe(toDate);
+            expect(controller.name).toBe(name);
+            expect(controller.validChartData).toBe(true);
+        });
+
+        it('should display the chart and not the error', function() {
+            $rootScope.vm = {
+                isinCode: isinCode,
+                fromDate: fromDate,
+                toDate: toDate,
+                name: name
+            };
+            $rootScope.$digest();
+
+            expect(element.find('highchart').hasClass('ng-hide')).toBe(false);
+            expect(element.find('div.alert').hasClass('ng-hide')).toBe(true);
+        });
     });
 
+    describe('invalid ISIN code', function() {
+        it('should set up the controller and fetch the data with a valid ISIN code', function() {
+            $rootScope.vm = {
+                isinCode: 'notvalid',
+                fromDate: fromDate,
+                toDate: toDate,
+                name: name
+            };
+            $rootScope.$digest();
+
+            controller = element.controller('shareClassChart');
+
+            expect(controller.chartData).toEqual(jasmine.any(Array));
+            expect(controller.isinCode).toBe('notvalid');
+            expect(controller.fromDate).toBe(fromDate);
+            expect(controller.toDate).toBe(toDate);
+            expect(controller.name).toBe(name);
+            expect(controller.validChartData).toBe('Invalid ISIN Code');
+        });
+
+        it('should display the error and not the chart', function() {
+            $rootScope.vm = {
+                isinCode: 'notvalid',
+                fromDate: fromDate,
+                toDate: toDate,
+                name: name
+            };
+            $rootScope.$digest();
+
+            expect(element.find('highchart').hasClass('ng-hide')).toBe(true);
+            expect(element.find('div.alert').hasClass('ng-hide')).toBe(false);
+        });
+    });
 });
