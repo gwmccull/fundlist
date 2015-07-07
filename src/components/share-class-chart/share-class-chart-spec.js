@@ -73,7 +73,7 @@ describe('shareClassChart', function() {
     });
 
     describe('invalid ISIN code', function() {
-        it('should set up the controller and fetch the data with a valid ISIN code', function() {
+        it('should set up the controller and fetch an error code with an invalid ISIN code', function() {
             $rootScope.vm = {
                 isinCode: 'notvalid',
                 fromDate: fromDate,

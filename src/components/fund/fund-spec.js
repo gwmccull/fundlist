@@ -33,7 +33,7 @@ describe('fund', function() {
         "Transfer Agent Taxonomy Id": "JP Morgan Asset Management Marketing Limited",
         "Fiscal Year End Taxonomy Id": "30 November",
         "Web Display Status Taxonomy Id": "Display all fund facts",
-        "Scope Taxonomy Id": "Out of scope",
+        "Scope Taxonomy Id": "Out of $rootScope",
         "Fund Type Taxonomy Id": "OEICs",
         "Region Taxonomy Id": "America",
         "Tech Rules Flag": "Yes",
@@ -414,7 +414,7 @@ describe('fund', function() {
         ]
     };
 
-    var scope, element, controller;
+    var $rootScope, element, controller;
 
     beforeEach(module('templates'));
 
@@ -422,23 +422,19 @@ describe('fund', function() {
 
     beforeEach(module('app.filter.string'));
 
-    beforeEach(inject(function($rootScope, $compile) {
+    beforeEach(inject(function(_$rootScope_, $compile) {
         element = angular.element('<fund fund="vm.fund"></fund>');
-        scope = $rootScope;
-        scope.vm = {};
-        scope.vm.fund = fund;
+        $rootScope = _$rootScope_;
+        $rootScope.vm = {};
+        $rootScope.vm.fund = fund;
 
-        $compile(element)(scope);
-        scope.$digest();
+        $compile(element)($rootScope);
+        $rootScope.$digest();
 
         controller = element.controller('fund');
     }));
 
-
     it('should contain a fund', function() {
-        //var templateAsHtml = element.html();
-
-        //console.log(element.html())
         expect(controller.fund).toEqual(fund);
     });
 });

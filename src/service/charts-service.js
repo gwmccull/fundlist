@@ -23,6 +23,7 @@
                 // check for a new ISIN Code
                 if (isinCode !== savedIsinCode) {
                     charts = [];
+                    savedIsinCode = isinCode;
                 }
 
                 if (charts.length === 0) {

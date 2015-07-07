@@ -38,7 +38,6 @@
 
         fundService.getFunds()
             .then(function (data) {
-                //console.log("data", data);
                 $rootScope.funds = data;
             });
     }

@@ -72,7 +72,7 @@ describe('shareClass', function() {
         "Total Return DateTime": "2015-05-31 00:00:00.0"
     };
 
-    var scope, element, controller;
+    var $rootScope, element, controller;
 
     beforeEach(module('templates'));
 
@@ -80,14 +80,14 @@ describe('shareClass', function() {
 
     beforeEach(module('app.shareClass'));
 
-    beforeEach(inject(function($rootScope, $compile) {
+    beforeEach(inject(function(_$rootScope_, $compile) {
         element = angular.element('<share-class share="vm.share"></share-class>');
-        scope = $rootScope;
-        scope.vm = {};
-        scope.vm.share = share;
+        $rootScope = _$rootScope_;
+        $rootScope.vm = {};
+        $rootScope.vm.share = share;
 
-        $compile(element)(scope);
-        scope.$digest();
+        $compile(element)($rootScope);
+        $rootScope.$digest();
 
         controller = element.controller('shareClass');
     }));
@@ -98,28 +98,28 @@ describe('shareClass', function() {
 
     describe('switching logic for the View', function() {
         it('should contain a list for share classes more than 4yrs old', function() {
-            scope.vm.share["Launch Date"] = '2010-01-31 00:00:00.0';
-            scope.$digest();
+            $rootScope.vm.share["Launch Date"] = '2010-01-31 00:00:00.0';
+            $rootScope.$digest();
             expect(element.find('ul').length).toBeGreaterThan(0);
         });
 
         it('should contain a table for share classes less than 4yrs old', function() {
-            scope.vm.share["Launch Date"] = '2014-01-31 00:00:00.0';
-            scope.$digest();
+            $rootScope.vm.share["Launch Date"] = '2014-01-31 00:00:00.0';
+            $rootScope.$digest();
             expect(element.find('table').length).toBe(1);
         });
     });
 
     describe('datedShareClass tests', function() {
         it('should return true for share classes more than 4yrs old', function() {
-            scope.vm.share["Launch Date"] = '2010-01-31 00:00:00.0';
-            scope.$digest();
+            $rootScope.vm.share["Launch Date"] = '2010-01-31 00:00:00.0';
+            $rootScope.$digest();
             expect(controller.datedShareClass()).toBe(true);
         });
 
         it('should return false for share classes less than 4yrs old', function() {
-            scope.vm.share["Launch Date"] = '2014-01-31 00:00:00.0';
-            scope.$digest();
+            $rootScope.vm.share["Launch Date"] = '2014-01-31 00:00:00.0';
+            $rootScope.$digest();
             expect(controller.datedShareClass()).toBe(false);
         });
     });

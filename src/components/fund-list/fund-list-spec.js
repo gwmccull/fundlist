@@ -35,7 +35,7 @@ describe('fundList', function() {
                 "Transfer Agent Taxonomy Id": "JP Morgan Asset Management Marketing Limited",
                 "Fiscal Year End Taxonomy Id": "30 November",
                 "Web Display Status Taxonomy Id": "Display all fund facts",
-                "Scope Taxonomy Id": "Out of scope",
+                "Scope Taxonomy Id": "Out of $rootScope",
                 "Fund Type Taxonomy Id": "OEICs",
                 "Region Taxonomy Id": "America",
                 "Tech Rules Flag": "Yes",
@@ -449,7 +449,7 @@ describe('fundList', function() {
                 "Transfer Agent Taxonomy Id": "JP Morgan Asset Management Marketing Limited",
                 "Fiscal Year End Taxonomy Id": "31 January",
                 "Web Display Status Taxonomy Id": "Display all fund facts",
-                "Scope Taxonomy Id": "Out of scope",
+                "Scope Taxonomy Id": "Out of $rootScope",
                 "Fund Type Taxonomy Id": "OEICs",
                 "Region Taxonomy Id": "Pacific",
                 "Tech Rules Flag": "Yes",
@@ -862,20 +862,20 @@ describe('fundList', function() {
         ]
     };
 
-    var scope, element, controller;
+    var $rootScope, element, controller;
 
     beforeEach(module('templates'));
 
     beforeEach(module('app.fundList'));
 
-    beforeEach(inject(function($rootScope, $compile) {
+    beforeEach(inject(function(_$rootScope_, $compile) {
         element = angular.element('<fund-list funds="vm.funds"></fund-list>');
-        scope = $rootScope;
-        scope.vm = {};
-        scope.vm.funds = fundData.funds;
+        $rootScope = _$rootScope_;
+        $rootScope.vm = {};
+        $rootScope.vm.funds = fundData.funds;
 
-        $compile(element)(scope);
-        scope.$digest();
+        $compile(element)($rootScope);
+        $rootScope.$digest();
 
         controller = element.controller('fundList');
     }));

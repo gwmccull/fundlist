@@ -1,7 +1,7 @@
 @import "../bower_components/bootstrap/less/bootstrap.less";
 //@import "bower_components/bootstrap/less/theme.less";
-//@import "../bower_components/font-awesome/less/font-awesome.less";
-//@fa-font-path: "bower_components/font-awesome/fonts";
+@import "../bower_components/font-awesome/less/font-awesome.less";
+@fa-font-path: "bower_components/font-awesome/fonts";
 
 /* Component LESS */
 @import "components/fund-list/fund-list.less";
@@ -24,6 +24,8 @@
 //	}
 //}
 
+
+// to animate an ng-show/hide, add "fadein fadeout" to the class of the element
 .fadein,
 .fadeout {
     -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) .3s;
